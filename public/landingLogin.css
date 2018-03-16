@@ -12,7 +12,6 @@ body {
    overflow: hidden;
 }
 
-
 #headerText {
    color: plum;
    font-size: 70px;
@@ -26,20 +25,13 @@ form {
    background-color: rgb(237, 237, 237);
    background-color: hsla(0, 0%, 93%, 0.808);
    width: auto;
-   top: 50%;
-   left: 50%;
-   align-items: center;
+   top: 30%;
+   left: 25%;
+   right: 25%;
    position: fixed;
 }
 
 /* keeps this behind all content */
-
-#myCard {
-   position: absolute;
-   z-index: 1 !important;
-   width: 100%;
-   height: 100%;
-}
 
 .carousel-item {
    height: 100vh;
