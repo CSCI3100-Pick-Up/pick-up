@@ -13,8 +13,23 @@ body {
 }
 
 #headerText {
-   color: plum;
-   font-size: 70px;
+   padding: auto;
+   z-index: 1;
+   position: fixed;
+   width: auto;
+   top: 15%;
+   left: 25%;
+   right: 25%;
+}
+
+#brand {
+   color: white;
+   font-size: 8rem;
+}
+
+#motivation {
+   color: turquoise;
+   font-size: 2.5rem;
 }
 
 form {
@@ -25,7 +40,7 @@ form {
    background-color: rgb(237, 237, 237);
    background-color: hsla(0, 0%, 93%, 0.808);
    width: auto;
-   top: 30%;
+   top: 45%;
    left: 25%;
    right: 25%;
    position: fixed;
