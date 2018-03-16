@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Report</title>
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+	<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+	<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+</head>
+
+<body>
+	<!-- navbar -->
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+		<a class="navbar-brand" href="#">Pick up</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!-- end of navbar -->
+
+<form style="margin: 0 10% 0 10%">
+	<!-- Search-->
+	<div>
+		<input class="form-control mr-sm-2" type="text" placeholder="Who are you going to report ?" aria-label="Search" list="userDropdown">
+		<datalist id="userDropdown">
+			<option value="Alex">Alex</option>
+			<option value="Romario">Romario</option>
+			<option value="Sam">Sam</option>
+			<option value="Vincent">Vincent</option>
+			<option value="Winson">Winson</option>
+		</datalist>
+	</div>
+	<!-- end of Search -->
+
+	<!-- checkbox -->
+	<div>
+		<p>Reasons:</p>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="">
+					Did not show up
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" value="">
+					Bad behavior
+				</label>
+			</div>
+	</div>
+	<!-- end of checkbox -->
+
+	<div>
+		<p>Details:</p>
+		<textarea type="text" placeholder="Please give your explaination here" style="width:100%" rows = "8"></textarea>
+	</div>
+	<input type="button" class="btn" value="Send" style="position: absolute;right:10%">
+</form>
+</body>
+</html>
