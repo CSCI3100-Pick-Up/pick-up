@@ -34,6 +34,11 @@ app.get('/report', (req, res) => {
 	res.sendFile('report.html', { root: path.join(__dirname, '../views') });
 });
 
+app.get('/display-matches',
+        (req, res) => {res.sendFile('display-matches.html',
+                                    {root: path.join(__dirname,
+                                                     '../views')});});
+
 app.post('/login', urlencodedParser, async (req, res) => {
   res.send("Not implement yet");
 });
