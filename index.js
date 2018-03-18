@@ -3,7 +3,7 @@ let express = require('express');
 let session = require('express-session');
 let app = express();
 
-require('./js/db.js');    // Set up DB
+//require('./js/db.js');    // Set up DB
 
 app.use( session({
     secret: 'mysecretkey',
@@ -14,7 +14,6 @@ app.use( session({
 }));
 
 app.set('view engine', 'ejs'); // set up ejs for templating
-
 // Setup the routing rules in ./js/routes
 app.use(require('./js/routes.js'));
 

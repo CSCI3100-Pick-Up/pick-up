@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+
+    <title>Pick-Up Schedule</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/starter-template.css" rel="stylesheet">
+
+    <script src="https://cdn.alloyui.com/3.0.1/aui/aui-min.js"></script>
+    <link href="https://cdn.alloyui.com/3.0.1/aui-css/css/bootstrap.min.css" rel="stylesheet"></link>
+    <script>YUI().use(
+  'aui-scheduler',
+  function(Y) {
+    var events = [
+      {
+        content: 'Partial Lunar Eclipse',
+        endDate: new Date(2018, 2, 22, 5),  //0 represents January
+        startDate: new Date(2018, 2, 22, 1)
+      },
+      {
+        color: "#8d8",
+        content: 'Earth Day Lunch',
+        disabled: true,
+        endDate: new Date(2018, 2, 15, 13),
+        meeting: true,
+        reminder: true,
+        startDate: new Date(2018, 2, 15, 12)
+      },
+      {
+        content: "Weeklong",
+        endDate: new Date(2018, 2, 13),
+        startDate: new Date(2018, 2, 20)
+      }
+    ];
+
+    var agendaView = new Y.SchedulerAgendaView();
+    var dayView = new Y.SchedulerDayView();
+    var weekView = new Y.SchedulerWeekView();
+    var monthView = new Y.SchedulerMonthView();
+
+    var eventRecorder = new Y.SchedulerEventRecorder({
+      on: {
+       save: function(event) {
+           alert('Save Event:' + this.isNew() + ' --- ' + this.getContentNode().val()); //Should be communicating with database
+       },
+       edit: function(event) {
+           alert('Edit Event:' + this.isNew() + ' --- ' + this.getContentNode().val());
+       },
+       delete: function(event) {
+           alert('Delete Event:' + this.isNew() + ' --- ' + this.getContentNode().val());
+         },
+      //cancel: function(event) {
+          //alert('Cancel Event:' + this.isNew() + ' --- ' + this.getContentNode().val());
+       //}
+   }
+    });
+
+    new Y.Scheduler(
+      {
+        activeView: weekView,
+        boundingBox: '#myScheduler',
+        eventRecorder: eventRecorder,
+        items: events,
+        render: true,
+        views: [dayView, weekView, monthView, agendaView]
+      }
+    );
+  }
+);
+</script>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+        <div class="container ">
+            <a class="navbar-brand " href="/">PickUp</a>
+            <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarSupportedContent
+            " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Toggle navigation ">
+                <span class="navbar-toggler-icon "></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+                <div class="container ">
+                    <ul class="navbar-nav mr-auto ">
+                        <li class="nav-item active ">
+                            <a class="nav-link " href="/profile">Profile
+                                <span class="sr-only ">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link " href="/schedule">My Schedule</a>
+                        </li>
+                        <li class="nav-item dropdown ">
+                            <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button " data-toggle="dropdown" aria-haspopup="true "
+                               aria-expanded="false ">
+                                Options
+                            </a>
+                            <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item " href="/report">Report User</a>
+                                <a class="dropdown-item " href="#">Another action</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div id="wrapper">
+      <div id="myScheduler"></div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+  </body>
+</html>
