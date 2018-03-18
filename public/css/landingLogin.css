@@ -12,6 +12,10 @@ body {
    overflow: hidden;
 }
 
+.spacing {
+   margin-top: 15px;
+}
+
 #headerText {
    padding-top: 5%;
    text-align: center;
