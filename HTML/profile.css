@@ -1,0 +1,37 @@
+
+
+.glyphicon { font-size: 15px; margin-bottom: 10px; margin-right: 10px; }
+
+.button{
+  background-color: #008CBA;
+}
+
+.img-thumbnail{
+margin-top: 50px;
+}
+
+.user-name{
+  padding-top: 50px;
+  padding-left: 50px;
+}
+.container{
+
+  display: flex;
+  flex-wrap: wrap;
+}
+p{
+  padding-left: 50px;
+}
+small {
+display: block;
+padding-left: 50px;
+
+
+line-height: 1.428571429;
+color: #999;
+}
+
+img{
+  width: 5%;
+  height: auto;
+}
