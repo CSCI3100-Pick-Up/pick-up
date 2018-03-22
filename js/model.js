@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
+var bcrypt = require('bcryptjs');
 
 
 var UserSchema = Schema({
@@ -23,8 +24,11 @@ var Schedule = mongoose.model('Schedule', ScheduleSchema);
 
 
 // Place holder for authentication
-function authenticate(username, password) {
-  return (username === 'john' && password === '123');
+async function authenticate(email, password) {
+  return await User.findOne({email: email}).exec().then(function(user){
+      return bcrypt.compareSync(password,user.password);
+  });
+  //return (username === 'john' && password === '123');
 }
 
 module.exports = {
