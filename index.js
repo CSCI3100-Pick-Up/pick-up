@@ -3,7 +3,7 @@ let express = require('express');
 let session = require('express-session');
 let app = express();
 
-//require('./js/db.js');    // Set up DB
+require('./js/db.js');    // Set up DB
 
 app.use( session({
     secret: 'mysecretkey',
