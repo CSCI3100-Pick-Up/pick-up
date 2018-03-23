@@ -1,0 +1,45 @@
+<%- include header.ejs %>
+
+<body>
+
+	<form action="/report" method="post" style="margin: 3% 10% 0 10%">
+		<div>
+			<input class="form-control mr-sm-2" type="text" placeholder="Who are you going to report ?" aria-label="Search" list="userDropdown" name="bluser">
+			<datalist id="userDropdown">
+				<option value="Alex">Alex</option>
+				<option value="Romario">Romario</option>
+				<option value="Sam">Sam</option>
+				<option value="Vincent">Vincent</option>
+				<option value="Winson">Winson</option>
+			</datalist>
+		</div>
+		<!-- end of Search -->
+
+		<!-- checkbox -->
+		<div>
+			<p>Reasons:</p>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" name="cb1">
+						Did not show up
+					</label>
+				</div>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="" name="cb2">
+						Bad behavior
+					</label>
+				</div>
+		</div>
+		<!-- end of checkbox -->
+
+		<!-- Textarea and submit button -->
+		<div>
+			<p>Details:</p>
+			<textarea name="description" type="text" placeholder="Please give your explaination here" style="width:100%" rows = "8"></textarea>
+		</div>
+		<input type="submit" class="btn" value="Send" style="position: absolute;right:10%">
+		<!-- end of Textarea and submit button -->
+	</form>
+</body>
+</html>
