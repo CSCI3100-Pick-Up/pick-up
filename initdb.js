@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 require('./js/db.js'); // Set up connection and create DB if it does not exists yet
 
 var model = require('./js/model.js');
-
+var bcrypt = require('bcryptjs');
 // Remove existing data from Users and Items collections and
 // repopulate them with test data
 model.User.remove({}, function(err) {
@@ -61,7 +61,10 @@ function populateData() {
     _user('tanya', 'tanya@foo.com', '123'),
     _user('fred', 'fred@bar.com', '123')
   ];
-
+  for (var i=0;i<users.length;i++) {
+    var hash = bcrypt.hashSync(users[i].password, 10);
+    users[i].password = hash;
+  }
 
   // Insert all users at once
   model.User.create(users, function(err, _users) {
