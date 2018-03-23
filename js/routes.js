@@ -25,27 +25,27 @@ app.post('/login', require('./loginSignUp.js'));
 app.post('/sign', require('./loginSignUp.js'));
 
 app.get('/', (req, res) => {
-	res.sendFile('landingLogin.html', { root: path.join(__dirname, '../views') });
+	res.render('landingLogin.ejs', { title: 'PickUp' });
 });
 
 app.get('/signUp', (req, res) => {
-	res.sendFile('signUp.html', { root: path.join(__dirname, '../views') });
+	res.render('signUp.ejs', { title: 'PickUp - Sign Up' });
 });
 
 app.get('/profile', (req, res) => {
-	res.sendFile('ProfilePage.html', { root: path.join(__dirname, '../views') });
+	res.render('ProfilePage.ejs', { title: 'PickUp - Profile' });
 });
 
 app.get('/display-matches', (req, res) => {
-	res.sendFile('display-matches.html', {root: path.join(__dirname,'../views')});
+	res.render('display-matches.ejs', { title: 'PickUp - Scan Result' });
 });
 
 app.get('/schedule', (req, res) => {
-	res.sendFile('schedule.html', { root: path.join(__dirname, '../views') });
+	res.render('schedule.ejs', { title: 'PickUp - Schedule' });
 });
 
 app.get('/report', (req, res) => {
-	res.sendFile('report.html', { root: path.join(__dirname, '../views') });
+	res.render('report.ejs', { title: 'PickUp - Report' });
 });
 
 
