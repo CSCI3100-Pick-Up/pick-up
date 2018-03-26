@@ -38,3 +38,20 @@ app.post('/login', urlencodedParser, async (req, res) => {
 app.post('/sign', urlencodedParser, async (req, res) => {
   res.send("Not implement yet");
 });
+
+app.use('/loggedIn', (req, res)=>{
+  if (req.session.user === undefined) {
+    res.send(false);
+  }
+  else {
+    model.User.findOne({email: req.session.user}, 'balance', (err, result)=>{
+      if (err) {
+        errHandler(err, res);
+      }
+      else {
+        var dummy = {value: true, user:req.session.user, balance: result.balance};
+          res.send(dummy);
+      }
+    });
+  }
+  });
