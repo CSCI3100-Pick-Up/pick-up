@@ -1,0 +1,32 @@
+  <div id=footer>
+    <!-- HTML code for footer (if any) goes here -->
+  </div>
+</body>
+<script>
+$(document).ready(function(){
+  $.ajax({
+    url: '/loggedIn',
+    type: 'GET',
+    success: function(result) {
+      if (result) {
+        let logout_html = "<a class=nav-link href=/logout>Logout</a>"
+        //$('#loginbutton').html(logout_html);
+        if (result.user === "admin") {
+          let welcome_html = "Welcome, <a href='/admin'>"+result.user+"</a>!"
+          //$('#welcomeUser').html(welcome_html);
+        }
+        else {
+          let welcome_html = "Welcome, <a href='/profile'>"+result.user+"</a>!"
+          //$('#welcomeUser').html(welcome_html);
+        }
+      }
+      else {
+        var login_html = "<a class=nav-link href=/login>Login</a>"
+        //$('#loginbutton').html(login_html);
+        //$('#welcomeUser').html(" ");
+      }
+    }
+  })
+})
+</script>
+</html>
