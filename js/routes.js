@@ -43,7 +43,23 @@ app.get('/display-matches', (req, res) => {
 });
 
 app.get('/schedule', (req, res) => {
-	res.render('schedule.ejs', { title: 'PickUp - Schedule' });
+	model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
+		if (err) {
+			model.errHandler(err, res);
+		}
+		else {
+			model.Schedule.find({owner: id._id}, (err, result)=>{
+				if (err) {
+					model.errHandler(err, res);
+				}
+				else {
+					var dummy = {value: true, user:req.session.user, schedule: result};
+					console.log(dummy);
+					res.render('schedule.ejs', { title: 'PickUp - Schedule' , data: dummy});
+				}
+			});
+		}
+	});
 });
 
 app.get('/report', (req, res) => {
