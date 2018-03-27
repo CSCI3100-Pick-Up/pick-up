@@ -39,19 +39,19 @@ app.post('/sign', urlencodedParser, async (req, res) => {
   res.send("Not implement yet");
 });
 
-app.use('/loggedIn', (req, res)=>{
+app.get('/loggedIn', (req, res)=>{
   if (req.session.user === undefined) {
     res.send(false);
   }
   else {
-    model.User.findOne({email: req.session.user}, 'balance', (err, result)=>{
-      if (err) {
-        errHandler(err, res);
-      }
-      else {
-        var dummy = {value: true, user:req.session.user, balance: result.balance};
-          res.send(dummy);
-      }
-    });
-  }
-  });
+    model.User.findOne({email: req.session.user}, 'username', (err, name)=>{
+       if (err) {
+        model.errHandler(err, res);
+       }
+       else {
+        var dummy = {value: true, user:req.session.user, username: name.username};
+        res.send(dummy);
+  		 }
+		 });
+	 }
+});
