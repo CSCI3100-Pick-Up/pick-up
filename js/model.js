@@ -31,8 +31,14 @@ async function authenticate(email, password) {
   //return (username === 'john' && password === '123');
 }
 
+function errHandler(err, res) {
+    console.log(err);
+    res.status(500).send('Error!');
+};
+
 module.exports = {
   User: User,
   Schedule: Schedule,
   authenticate: authenticate,
+  errHandler: errHandler,
 }
