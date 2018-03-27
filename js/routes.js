@@ -20,7 +20,7 @@ module.exports = app;
 
 var path = require('path');
 
-app.use('/loggedIn', require('./loginSignUp.js'));
+app.get('/loggedIn', require('./loginSignUp.js'));
 
 app.post('/login', require('./loginSignUp.js'));
 
