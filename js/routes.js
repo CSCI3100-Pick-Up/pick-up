@@ -26,6 +26,8 @@ app.post('/login', require('./loginSignUp.js'));
 
 app.post('/sign', require('./loginSignUp.js'));
 
+app.get('/schedule/getschedule', require('./scheduleRoute.js'));
+
 app.get('/', (req, res) => {
 	res.render('landingLogin.ejs', { title: 'PickUp' });
 });
@@ -43,23 +45,7 @@ app.get('/display-matches', (req, res) => {
 });
 
 app.get('/schedule', (req, res) => {
-	model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
-		if (err) {
-			model.errHandler(err, res);
-		}
-		else {
-			model.Schedule.find({owner: id._id}, (err, result)=>{
-				if (err) {
-					model.errHandler(err, res);
-				}
-				else {
-					var dummy = {value: true, user:req.session.user, schedule: result};
-					console.log(dummy);
-					res.render('schedule.ejs', { title: 'PickUp - Schedule' , data: dummy});
-				}
-			});
-		}
-	});
+	res.render('schedule.ejs', { title: 'PickUp - Schedule' });
 });
 
 app.get('/report', (req, res) => {
