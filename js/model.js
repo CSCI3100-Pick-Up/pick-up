@@ -14,8 +14,8 @@ var UserSchema = Schema({
 var ScheduleSchema = Schema({
   owner: { type: ObjectId, ref: 'User' },
   content: { type: String, default: '' },
-  endDate: { type: Date, default: Date.now },
-  startDate: { type: Date, default: Date.now }
+  endDate: { type: String, default: Date.now.toString() },
+  startDate: { type: String, default: Date.now.toString() }
 });
 
 

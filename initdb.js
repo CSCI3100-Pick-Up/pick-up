@@ -29,22 +29,22 @@ function populateData() {
             //'pricy', 'meh', 'interesting', 'omg', 'bravo' ];
 
   var schedules = [
-    _schedule(0, 'Study', new Date(2018, 3, 20, 13), new Date(2018, 3, 20, 3)),
-    _schedule(1, 'Basketball', new Date(2018, 3, 19, 17), new Date(2018, 3, 19, 7)),
-    _schedule(2, 'Soccer', new Date(2018, 4, 12, 4), new Date(2018, 4, 12, 2)),
-    _schedule(3, 'Tennis', new Date(2018, 3, 13, 20), new Date(2018, 3, 13, 15)),
-    _schedule(0, 'Table Tennis', new Date(2018, 3, 30, 11), new Date(2018, 3, 30, 2)),
-    _schedule(2, 'Midterms', new Date(2018, 2, 20, 15), new Date(2018, 2, 20, 7)),
-    _schedule(4, 'Lecture', new Date(2018, 1, 15, 3), new Date(2018, 1, 15, 0)),
-    _schedule(5, 'Exam', new Date(2018, 3, 19, 17), new Date(2018, 3, 19, 10)),
-    _schedule(5, 'Tutorial', new Date(2018, 3, 20, 13), new Date(2018, 3, 20, 11)),
-    _schedule(10, 'Basketball', new Date(2018, 3, 10, 9), new Date(2018, 3, 10, 7)),
-    _schedule(8, 'Piano', new Date(2018, 3, 20, 15), new Date(2018, 3, 20, 10)),
-    _schedule(4, 'Study', new Date(2018, 3, 21, 6), new Date(2018, 3, 21, 2)),
-    _schedule(8, 'Lecture', new Date(2018, 3, 11, 11), new Date(2018, 3, 11, 10)),
-    _schedule(7, 'Basketball', new Date(2018, 3, 12, 12), new Date(2018, 3, 12, 2)),
-    _schedule(1, 'Soccer', new Date(2018, 3, 10, 8), new Date(2018, 3, 10, 6)),
-    _schedule(1, 'Tennis', new Date(2018, 3, 12, 9), new Date(2018, 3, 12, 7))
+    _schedule(0, 'Study', "March 20, 2018 19:00:00", "March 20, 2018 17:00:00"),
+    _schedule(1, 'Basketball', "March 20, 2018 19:00:00", "March 20, 2018 17:00:00"),
+    _schedule(2, 'Soccer', "March 20, 2018 19:00:00", "March 20, 2018 17:00:00"),
+    _schedule(3, 'Tennis', "March 20, 2018 21:00:00", "March 20, 2018 17:00:00"),
+    _schedule(0, 'Table Tennis', "March 22, 2018 17:00:00", "March 22, 2018 13:00:00"),
+    _schedule(2, 'Midterms', "March 21, 2018 15:00:00", "March 21, 2018 11:00:00"),
+    _schedule(4, 'Lecture', "March 20, 2018 15:00:00", "March 20, 2018 11:00:00"),
+    _schedule(5, 'Exam', "March 20, 2018 15:00:00", "March 20, 2018 11:00:00"),
+    _schedule(5, 'Tutorial', "March 20, 2018 10:00:00", "March 20, 2018 09:00:00"),
+    _schedule(10, 'Basketball', "March 20, 2018 11:00:00", "March 20, 2018 10:00:00"),
+    _schedule(8, 'Piano', "March 20, 2018 11:00:00", "March 20, 2018 10:00:00"),
+    _schedule(4, 'Study', "March 29, 2018 11:00:00", "March 29, 2018 09:00:00"),
+    _schedule(8, 'Lecture', "March 30, 2018 12:00:00", "March 30, 2018 11:00:00"),
+    _schedule(7, 'Basketball', "March 31, 2018 13:00:00", "March 31, 2018 10:00:00"),
+    _schedule(1, 'Soccer', "March 31, 2018 14:00:00", "March 31, 2018 12:00:00"),
+    _schedule(1, 'Tennis', "April 2, 2018 12:00:00", "April 2, 2018 10:00:00")
   ];
 
   // 11 users
