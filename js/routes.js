@@ -42,9 +42,7 @@ app.get('/profile', (req, res) => {
 	res.render('ProfilePage.ejs', { title: 'PickUp - Profile' });
 });
 
-app.get('/display-matches', (req, res) => {
-	res.render('display-matches.ejs', { title: 'PickUp - Scan Result' });
-});
+app.get('/display-matches', require('./scan.js'));
 
 app.get('/schedule', (req, res) => {
 	res.render('schedule.ejs', { title: 'PickUp - Schedule' });
