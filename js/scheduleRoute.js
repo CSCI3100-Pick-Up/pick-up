@@ -32,3 +32,8 @@ app.get('/schedule/getschedule', (req, res)=>{
     }
   });
 });
+
+app.get('/schedule/newschedule', (req, res)=>{
+  console.log(req.query);
+  res.send(true);
+})

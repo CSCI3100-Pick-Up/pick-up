@@ -28,6 +28,8 @@ app.post('/sign', require('./loginSignUp.js'));
 
 app.get('/schedule/getschedule', require('./scheduleRoute.js'));
 
+app.get('/schedule/newschedule', require('./scheduleRoute.js'));
+
 app.get('/', (req, res) => {
 	res.render('landingLogin.ejs', { title: 'PickUp' });
 });
