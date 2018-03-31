@@ -11,10 +11,7 @@ in the folder containing tihs file.
 
 Alternative Setup Instruction
 =============================
-Alternatively, if you are running any unix-like system with a POSIX-compliant
-`/bin/sh`, you can install [GNU Guile 2.2](https://www.gnu.org/software/guile/)
-and simply run
+Suppose you have [Python 3](https://docs.python.org/3/) installed as PYTHON.
+Then after following step 0 and 1, you can simply run:
 
-    ./bootstrap.scm
-
-to have everything set up for you.
+    $ PYTHON bootstrap.py
