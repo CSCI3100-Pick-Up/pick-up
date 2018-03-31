@@ -54,9 +54,8 @@ app.get('/report', (req, res) => {
 	res.render('report.ejs', { title: 'PickUp - Report' });
 });
 
+app.post('/report', require('./report.js'));
 
-app.post('/report', urlencodedParser, async (req, res) => {
-  res.send("Not implement yet");
-});
+app.get('/chatroom', require('./chatroom.js'));
 // CSS files, images, client-side JS files should be in ./public
 app.use(express.static('public'));
