@@ -1,61 +1,72 @@
 <%- include header.ejs %>
 
-  <body>
-
+<body>
     <main role="main" class="container">
-
-      <div class="starter-template">
-        <h1>Matches</h1>
         <p class="lead"></p>
-
+        <h1>Matches</h1>
         <table class="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Activity</th>
-              <th scope="col">Name</th>
-              <th scope="col">Matching time slot</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th><img src="../icons/whois-icon.png" class="img-fluid"></th>
-              <td>Football</td>
-              <td>John</td>
-              <td>10:30 am - 11:30 am</td>
-              <td>
-                <button type="button" class="btn btn-success">CONFIRM</button>
-              <td/>
-            </tr>
-            <tr>
-              <th><img src="../icons/whois-icon.png" class="img-fluid"></th>
-                <td>Basketball</td>
-              <td>Marry</td>
-              <td>2:30 pm - 3:30 pm</td>
-              <td>
-                <button type="button" class="btn btn-success">CONFIRM</button>
-              <td/>
-            </tr>
-            <tr>
-              <th><img src="../icons/whois-icon.png" class="img-fluid"></th>
-              <td>Badminton</td>
-              <td>Peter</td>
-              <td>7:30 pm - 8:30 pm</td>
-              <td>
-                <button type="button" class="btn btn-success">CONFIRM</button>
-              <td/>
-            </tr>
-          </tbody>
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Activity</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Matching time slot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <img class="img-fluid"
+                             src="../icons/whois-icon.png"
+                             style="max-width: 50%;">
+                    </th>
+                    <td>Football</td>
+                    <td>John</td>
+                    <td>10:30 am - 11:30 am</td>
+                    <td>
+                        <button class="btn btn-success"
+                                type="button">
+                            CONFIRM
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <img class="img-fluid"
+                             src="../icons/whois-icon.png"
+                             style="max-width: 50%;">
+                    </th>
+                    <td>Basketball</td>
+                    <td>Marry</td>
+                    <td>2:30 pm - 3:30 pm</td>
+                    <td>
+                        <button class="btn btn-success"
+                                type="button">
+                            CONFIRM
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <img class="img-fluid"
+                             src="../icons/whois-icon.png"
+                             style="max-width: 50%;">
+                    </th>
+                    <td>Badminton</td>
+                    <td>Peter</td>
+                    <td>7:30 pm - 8:30 pm</td>
+                    <td>
+                        <button class="btn btn-success" type="button">
+                            CONFIRM
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
         </table>
+    </main>
 
-      </div>
-
-    </main><!-- /.container -->
-
-    <!-- Bootstrap core JavaScript
-         ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<%- include footer.ejs %>
+
+    <%- include footer.ejs %>
