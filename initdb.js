@@ -16,8 +16,13 @@ model.User.remove({}, function(err) {
     if (err)
       return console.log(err);
 
+      model.Blacklist.remove({}, function(err) {
+        if(err)
+          return console.log(err);
+
     // Populate data only after both collections are cleared.
-    populateData();
+      populateData();
+    });
   });
 });
 

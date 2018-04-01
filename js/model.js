@@ -18,10 +18,17 @@ var ScheduleSchema = Schema({
   startDate: { type: String, default: Date.now.toString() }
 });
 
+var BlacklistSchema = Schema({
+  blacklisteduser: {type: String, required: true, dropDups: true},
+  byuser: {type: String, required: true},
+  didnotshowup: {type: Boolean, required: true},
+  badbehavior: {type: Boolean, required: true},
+  detail: {type: String}
+});
 
 var User = mongoose.model('User', UserSchema);
 var Schedule = mongoose.model('Schedule', ScheduleSchema);
-
+var Blacklist = mongoose.model('Blacklist', BlacklistSchema);
 
 // Place holder for authentication
 async function authenticate(email, password) {
@@ -39,6 +46,7 @@ function errHandler(err, res) {
 module.exports = {
   User: User,
   Schedule: Schedule,
+  Blacklist: Blacklist,
   authenticate: authenticate,
   errHandler: errHandler,
 }

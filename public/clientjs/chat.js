@@ -20,6 +20,7 @@ $(document).ready(function() {
               var msg =[];
               msg.push(msgtmp);
               msg.push(result.user);
+              msg.push(document.getElementById("chatuser").textContent);
               ws.send(JSON.stringify(msg));
             }
           }
