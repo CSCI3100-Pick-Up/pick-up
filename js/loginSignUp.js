@@ -49,9 +49,9 @@ app.get('/loggedIn', (req, res)=>{
         model.errHandler(err, res);
        }
        else {
-        var dummy = {value: true, user:req.session.user, username: name.username};
-        res.send(dummy);
-  		 }
-		 });
-	 }
+         var dummy = {value: true, user:req.session.user, username: name.username};
+         res.send(dummy);
+  	   }
+    });
+  }
 });

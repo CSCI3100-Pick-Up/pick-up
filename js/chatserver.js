@@ -13,6 +13,7 @@ module.exports = function(server) {
 
 	// Send message to all connected clients
 	function myBroadcast(msg) {
+		console.log(msg);
 		for (var i = 0; i < allWSConnections.length; i++) {
 			allWSConnections[i].send(msg);
 		}
@@ -34,7 +35,7 @@ module.exports = function(server) {
 		var conn = req.accept(null, req.origin);
 		// Add the current connection to allWSConnections[]
 		allWSConnections.push(conn);
-
+		console.log(conn);
 
 		// Specify what to do when receiving a message on this
 		// WS connection

@@ -7,11 +7,25 @@ $(document).ready(function() {
       $ul.append($li);
     };
 
+
     $('#send').on('click', function(evt) {
       // If connection is open and ready
       if (ws.readyState === WebSocket.OPEN) {
-        var msg = $('#sendText').val();
-        ws.send(msg);
+        $.ajax({
+          url: '/loggedIn',
+          type: 'GET',
+          success: function(result) {
+            if (result) {
+              var msgtmp = $('#sendText').val();
+              var msg =[];
+              msg.push(msgtmp);
+              msg.push(result.user);
+              ws.send(JSON.stringify(msg));
+            }
+          }
+        })
       }
     });
-  });
+
+
+});
