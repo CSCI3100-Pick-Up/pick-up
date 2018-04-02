@@ -25,7 +25,12 @@ YUI().use('aui-scheduler',function(Y) {
                 type: 'GET',
                 data: { content: String(saveEvent.getContentNode().val()), endDate: String(saveEvent.changed.endDate), startDate: String(saveEvent.changed.startDate)},
                 success: function(result) {
-                  alert('The new schedule ' + ' --- ' + text +' is saved!');
+                  if (result) {
+                    alert('The new schedule ' + ' --- ' + text +' is saved!');
+                  }
+                  else {
+                    alert('Something goes wrong! Please try again.');
+                  }
                   location.reload();
                 }
               });
@@ -42,7 +47,13 @@ YUI().use('aui-scheduler',function(Y) {
                     OldstartDate: String(editEvent.getUpdatedSchedulerEvent()._state.data.startDate.initValue)
                   },
                   success: function(result) {
-                    alert('The schedule is updated!');
+                    if (result) {
+                      alert('The schedule is updated!');
+                    }
+                    else {
+                      alert('Something goes wrong! Please try again.');
+                      location.reload;
+                    }
                   }
                 });
             },
@@ -57,7 +68,12 @@ YUI().use('aui-scheduler',function(Y) {
                  startDate: String(deleteEvent.getUpdatedSchedulerEvent().changed.startDate),
                },
                success: function(result) {
-                 alert('The schedule' + ' --- ' + text +' is deleted!');
+                 if (result) {
+                   alert('The schedule' + ' --- ' + text +' is deleted!');
+                 }
+                 else {
+                   alert('Something goes wrong! Please try again.');
+                 }
                  location.reload();
                }
              });
