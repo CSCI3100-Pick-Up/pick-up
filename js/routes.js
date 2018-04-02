@@ -35,11 +35,22 @@ app.get('/schedule/updateschedule', require('./scheduleRoute.js'));
 app.get('/schedule/deleteschedule', require('./scheduleRoute.js'));
 
 app.get('/', (req, res) => {
-	res.render('landingLogin.ejs', { title: 'PickUp' });
+	if (req.session.user){
+		res.redirect('/profile');
+	}
+	else {
+		res.render('landingLogin.ejs', { title: 'PickUp' });
+	}
 });
 
 app.get('/signUp', (req, res) => {
-	res.render('signUp.ejs', { title: 'PickUp - Sign Up' });
+	if (req.session.user){
+		res.redirect('/profile');
+	}
+	else {
+		res.render('signUp.ejs', { title: 'PickUp - Sign Up' });
+	}
+
 });
 
 app.get('/profile', require('./profile.js'));
@@ -47,11 +58,21 @@ app.get('/profile', require('./profile.js'));
 app.get('/matches', require('./matches.js'));
 
 app.get('/schedule', (req, res) => {
-	res.render('schedule.ejs', { title: 'PickUp - Schedule' });
+	if (req.session.user){
+			res.render('schedule.ejs', { title: 'PickUp - Schedule' });
+	}
+	else {
+		model.errHandler("User Not found!", res);
+	}
 });
 
 app.get('/report', (req, res) => {
-	res.render('report.ejs', { title: 'PickUp - Report' });
+	if (req.session.user){
+			res.render('report.ejs', { title: 'PickUp - Report' });
+	}
+	else {
+		model.errHandler("User Not found!", res);
+	}
 });
 
 app.post('/report', require('./report.js'));
