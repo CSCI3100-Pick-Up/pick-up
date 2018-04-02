@@ -7,7 +7,7 @@ app.get('/matches',
         (req,
          res) => {if (!req.session.user)
                   res.redirect('/')
-                  else py.run('scan.py',
+                  else py.run('py/scan.py',
                               {args: [req.session.user]},
                               (err,
                                table) => {if (err)
