@@ -23,11 +23,8 @@ YUI().use('aui-scheduler',function(Y) {
                 url: '/schedule/newschedule',
                 type: 'GET',
                 data: { content: String(saveEvent.getContentNode().val()), endDate: String(saveEvent.changed.endDate), startDate: String(saveEvent.changed.startDate)},
-                success: function(result) {
-                    console.log('Placeholder');
-                }
+                success: function(result) {}
               });
-              alert('Save Event:' + this.isNew() + ' --- ' + this.getContentNode().val()); //Should be communicating with database
             },
             edit: function(event) {
               alert('Edit Event:' + this.isNew() + ' --- ' + this.getContentNode().val());

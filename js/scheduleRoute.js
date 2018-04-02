@@ -35,5 +35,20 @@ app.get('/schedule/getschedule', (req, res)=>{
 
 app.get('/schedule/newschedule', (req, res)=>{
   console.log(req.query);
-  res.send(true);
-})
+  model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
+    if (err) {
+      model.errHandler(err, res);
+    }
+    else {
+      var schedule = new model.Schedule({owner: id._id, content: req.query.content, endDate: req.query.endDate, startDate: req.query.startDate});
+      schedule.save(function (err) {
+        if (err) {
+          model.errHandler(err, res);
+        }
+        else {
+          res.redirect('/schedule');
+        }
+      });
+    }
+  });
+});
