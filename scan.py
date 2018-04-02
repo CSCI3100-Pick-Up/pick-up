@@ -1,5 +1,4 @@
 from datetime import datetime
-from interval import interval
 from itertools import chain, groupby
 from pymongo import MongoClient
 from sys import argv
@@ -10,13 +9,29 @@ join = str.join
 strptime = datetime.strptime
 fromtimestamp = datetime.fromtimestamp
 
+def delete_key(key, dic):
+    return {k: dic[k] for k in dic if k != key}
+
+def open_itv(a, b):
+    if a < b:
+        return (a, b)
+    else:
+        return {}
+
+def intersect(j1, j2):
+    if not j1 or not j2:
+        return None
+    else:
+        a1, b1 = j1
+        a2, b2 = j2
+        a = max(a1, a2)
+        b = min(b1, b2)
+        return open_itv(a, b)
+
 client = MongoClient()
 db = client['csci3100PickUp']
 scheds = db['schedules']
 users = db['users']
-
-def delete_key(key, dic):
-    return {k: dic[k] for k in dic if k != key}
 
 def parse_time(s):
     return mktime(strptime(s, '%B %d, %Y %H:%M:%S').timetuple())
@@ -29,8 +44,8 @@ def oid_to_name_email(oid):
     return auth['username'], auth['email']
 
 def sched_itv(sched):
-    return interval([parse_time(sched['startDate']),
-                     parse_time(sched['endDate'])])
+    return open_itv(parse_time(sched['startDate']),
+                    parse_time(sched['endDate']))
 
 def normalize_sched(sched):
     oid = sched['owner']
@@ -48,8 +63,8 @@ def scheds_to_dict(scheds):
     return {act: [sched for sched in grp]
             for act, grp in groupby(sorted_scheds, sched_act)}
 
-def intersect(scheds, itvs):
-    return ({'interval': sched['interval'] & itv,
+def intersect_scheds(scheds, itvs):
+    return ({'interval': intersect(sched['interval'], itv),
              **delete_key('interval', sched)}
             for sched in scheds
             for itv in itvs)
@@ -62,7 +77,7 @@ def format_time(time):
     return fromtimestamp(time).strftime(fmt)
 
 def format_itv(itv):
-    (a, b), = itv
+    a, b = itv
     fmt = '''from  {start}
 until  {end}'''
     return normalize_html(fmt).format(start=format_time(a), end=format_time(b))
@@ -115,16 +130,17 @@ def format_html(matches):
            text=normalize_html(text))
     return html.replace('\n', ' ')
 
-_, my_email = argv
+my_email = argv[-1]
 my_sched_ls = normalize_scheds(scheds.find({'owner': email_to_oid(my_email)}))
 my_sched_dict = scheds_to_dict(my_sched_ls)
 
-sched_ls = normalize_scheds(concat(scheds.find({'content': act})
+other_sched_ls = normalize_scheds(concat(scheds.find({'content': act})
                                    for act in my_sched_dict))
-sched_dict = scheds_to_dict(sched_ls)
+other_sched_dict = scheds_to_dict(other_sched_ls)
 
-overlaps = concat(intersect(sched_dict[act],
-                            [sched['interval'] for sched in my_sched_dict[act]])
+overlaps = concat(intersect_scheds(other_sched_dict[act],
+                                   [sched['interval']
+                                    for sched in my_sched_dict[act]])
                   for act in my_sched_dict)
 matches = [sched
            for sched in overlaps
