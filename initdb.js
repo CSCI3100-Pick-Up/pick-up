@@ -58,17 +58,17 @@ function populateData() {
 
   // 11 users
   var users = [
-    _user('john', 'john@example.com', '123'),
-    _user('jane', 'jane@yahoo.com', '123'),
-    _user('eric', 'eric@gmail.com', '123'),
-    _user('matt', 'matt@gmail.com', '123'),
-    _user('jill', 'jill@yahoo.com', '123'),
-    _user('bill', 'bill@gmail.com', '123'),
-    _user('bob', 'bob@hotmail.com', '123'),
-    _user('charles', 'charles@hotmail.com', '123'),
-    _user('susan', 'susan@gmail.com', '123'),
-    _user('tanya', 'tanya@foo.com', '123'),
-    _user('fred', 'fred@bar.com', '123')
+    _user('john', 'john@cuhk.edu.hk', '123'),
+    _user('jane', 'jane@cuhk.edu.hk', '123'),
+    _user('eric', 'eric@cuhk.edu.hk', '123'),
+    _user('matt', 'matt@cuhk.edu.hk', '123'),
+    _user('jill', 'jill@cuhk.edu.hk', '123'),
+    _user('bill', 'bill@cuhk.edu.hk', '123'),
+    _user('bob', 'bob@cuhk.edu.hk', '123'),
+    _user('charles', 'charles@cuhk.edu.hk', '123'),
+    _user('susan', 'susan@cuhk.edu.hk', '123'),
+    _user('tanya', 'tanya@cuhk.edu.hk', '123'),
+    _user('fred', 'fred@cuhk.edu.hk', '123')
   ];
   for (var i=0;i<users.length;i++) {
     var hash = bcrypt.hashSync(users[i].password, 10);

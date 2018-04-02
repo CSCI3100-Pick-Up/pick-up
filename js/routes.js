@@ -42,9 +42,7 @@ app.get('/signUp', (req, res) => {
 	res.render('signUp.ejs', { title: 'PickUp - Sign Up' });
 });
 
-app.get('/profile', (req, res) => {
-	res.render('ProfilePage.ejs', { title: 'PickUp - Profile' });
-});
+app.get('/profile', require('./profile.js'));
 
 app.get('/matches', require('./matches.js'));
 
