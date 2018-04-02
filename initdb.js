@@ -49,7 +49,11 @@ function populateData() {
     _schedule(8, 'Lecture', "March 30, 2018 12:00:00", "March 30, 2018 11:00:00"),
     _schedule(7, 'Basketball', "March 31, 2018 13:00:00", "March 31, 2018 10:00:00"),
     _schedule(1, 'Soccer', "March 31, 2018 14:00:00", "March 31, 2018 12:00:00"),
-    _schedule(1, 'Tennis', "April 2, 2018 12:00:00", "April 2, 2018 10:00:00")
+      _schedule(0, 'Tennis', "April 2, 2018 12:00:00", "April 2, 2018 10:00:00"),
+      _schedule(1, 'Tennis', "April 2, 2018 12:00:00", "April 2, 2018 11:00:00"),
+      _schedule(2, 'Tennis', "April 2, 2018 11:00:00", "April 2, 2018 10:00:00"),
+      _schedule(3, 'Tennis', "April 2, 2018 12:00:00", "April 2, 2018 10:00:00"),
+      _schedule(4, 'Tennis', "April 2, 2018 14:00:00", "April 2, 2018 12:00:00")
   ];
 
   // 11 users
