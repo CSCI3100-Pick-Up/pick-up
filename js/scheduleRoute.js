@@ -52,3 +52,11 @@ app.get('/schedule/newschedule', (req, res)=>{
     }
   });
 });
+
+app.get('/schedule/updateschedule', (req, res)=>{
+
+});
+
+app.get('/schedule/deleteschedule', (req, res)=>{
+
+});
