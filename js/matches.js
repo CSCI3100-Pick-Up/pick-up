@@ -3,7 +3,7 @@ const py = require('python-shell')
 module.exports = app
 
 const title = 'PickUp - Scan Result'
-app.get('/display-matches',
+app.get('/matches',
         (req,
          res) => {if (!req.session.user)
                   res.redirect('/')
@@ -12,6 +12,6 @@ app.get('/display-matches',
                               (err,
                                table) => {if (err)
                                           console.log(err)
-                                          else res.render('display-matches.ejs',
+                                          else res.render('matches.ejs',
                                                           {title: title,
                                                            table: table})})})
