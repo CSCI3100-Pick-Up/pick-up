@@ -94,15 +94,19 @@ def format_match(match):
   <td>{username}</td>
   <td>{interval}</td>
   <td>
-    <button class="btn btn-success"
-            type="button">
-      CONFIRM
-    </button>
+    <form action="/chatroom" method="post">
+      <button class="btn btn-success"
+              name="email"
+              value="{email}">
+        CONFIRM
+      </button>
+    </form>
   </td>
 </tr>
 '''.format(activity=match['activity'],
            username=match['username'],
            interval=format_itv(match['interval']),
+           email=match['email'],
            image='"../icons/whois-icon.png"')
 
 def format_matches(matches):
