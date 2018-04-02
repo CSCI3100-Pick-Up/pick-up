@@ -32,8 +32,6 @@ app.get('/schedule/newschedule', require('./scheduleRoute.js'));
 
 app.get('/schedule/updateschedule', require('./scheduleRoute.js'));
 
-app.get('/schedule/updatescheduleName', require('./scheduleRoute.js'));
-
 app.get('/schedule/deleteschedule', require('./scheduleRoute.js'));
 
 app.get('/', (req, res) => {

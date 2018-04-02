@@ -19,36 +19,36 @@ YUI().use('aui-scheduler',function(Y) {
           on: {
             save: function(event) {
               var saveEvent = this;
+              var text = String(saveEvent.getContentNode().val());
               $.ajax({
                 url: '/schedule/newschedule',
                 type: 'GET',
                 data: { content: String(saveEvent.getContentNode().val()), endDate: String(saveEvent.changed.endDate), startDate: String(saveEvent.changed.startDate)},
                 success: function(result) {
-                  alert('The new schedule ' + ' --- ' + this.getContentNode().val() +'is saved!');
+                  alert('The new schedule ' + ' --- ' + text +' is saved!');
+                  location.reload();
                 }
               });
             },
             edit: function(event) {
               var editEvent = this;
-              console.log(editEvent);
-              console.log(editEvent.getUpdatedSchedulerEvent());
-              $.ajax({
-                url: '/schedule/updateschedule',
-                type: 'GET',
-                data: { content: String(editEvent.getContentNode().val()),
-                  NewendDate: String(editEvent.getUpdatedSchedulerEvent().changed.endDate),
-                  NewstartDate: String(editEvent.getUpdatedSchedulerEvent().changed.startDate),
-                  OldendDate: String(editEvent.changed.endDate),
-                  OldstartDate: String(editEvent.changed.startDate)
-                },
-
-                success: function(result) {}
-              });
+                $.ajax({
+                  url: '/schedule/updateschedule',
+                  type: 'GET',
+                  data: { content: String(editEvent.getContentNode().val()),
+                    NewendDate: String(editEvent.getUpdatedSchedulerEvent().changed.endDate),
+                    NewstartDate: String(editEvent.getUpdatedSchedulerEvent().changed.startDate),
+                    OldendDate: String(editEvent.getUpdatedSchedulerEvent()._state.data.endDate.initValue),
+                    OldstartDate: String(editEvent.getUpdatedSchedulerEvent()._state.data.startDate.initValue)
+                  },
+                  success: function(result) {
+                    alert('The schedule is updated!');
+                  }
+                });
             },
            delete: function(event) {
              var deleteEvent = this;
-             console.log(deleteEvent);
-             console.log(deleteEvent.getUpdatedSchedulerEvent());
+             var text = String(deleteEvent.getContentNode().val());
              $.ajax({
                url: '/schedule/deleteschedule',
                type: 'GET',
@@ -56,8 +56,9 @@ YUI().use('aui-scheduler',function(Y) {
                  endDate: String(deleteEvent.getUpdatedSchedulerEvent().changed.endDate),
                  startDate: String(deleteEvent.getUpdatedSchedulerEvent().changed.startDate),
                },
-               success: function(result){
-                 alert('The schedule' + ' --- ' + this.getContentNode().val() +'is deleted!');
+               success: function(result) {
+                 alert('The schedule' + ' --- ' + text +' is deleted!');
+                 location.reload();
                }
              });
             },

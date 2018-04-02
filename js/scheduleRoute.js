@@ -52,14 +52,26 @@ app.get('/schedule/newschedule', (req, res)=>{
 });
 
 app.get('/schedule/updateschedule', (req, res)=>{
-  console.log(req.query);
+  var OldstartDate = new Date(req.query.OldstartDate);
+  var OldendDate = new Date(req.query.OldendDate);
   model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
     if (err) {
       model.errHandler(err, res);
     }
     else {
-      model.Schedule.find({owner: id._id, startDate: req.query.OldstartDate}, (err, schedule)=>{
-        console.log(schedule);
+      model.Schedule.find({owner: id._id}, (err, schedule)=>{
+        for (i=0; i<schedule.length;i++) {
+          var TempstartDate = new Date(schedule[i].startDate);
+          var TempendDate = new Date(schedule[i].endDate);
+          if ((OldstartDate.getTime() === TempstartDate.getTime()) && (OldendDate.getTime() === TempendDate.getTime())){
+            schedule[i].content = req.query.content;
+            schedule[i].startDate = req.query.NewstartDate;
+            schedule[i].endDate = req.query.NewendDate;
+            schedule[i].save();
+            break;
+          }
+        }
+        res.redirect('/schedule');
       })
     }
   });
@@ -80,6 +92,7 @@ app.get('/schedule/deleteschedule', (req, res)=>{
             break;
           }
         }
+        res.redirect('/schedule');
       })
     }
   });
