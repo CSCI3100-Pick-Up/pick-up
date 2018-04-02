@@ -1,7 +1,7 @@
 <%- include header.ejs %>
 
 <body>
-
+	<link rel="stylesheet" href="/css/landingLogin.css">
 	<div class="container">
 		<div id="headerText">
 			<div class="row">
@@ -50,9 +50,14 @@
 			<div class=" row ">
 				<div id="myCard " class="card w-75 ">
 					<!-- Form input(posts) log in to account -->
-					<form action="/login" method="post">
+					<form action="/sign" method="post">
 						<!-- Form input(posts)
 					<form action="/sign" method="post">  This page is only for login, should not send signin info to backend-->
+						<div class="form-group ">
+							<label for="usernameInput ">Username</label>
+							<input type="username" name="username" placeholder="Username" class="form-control " id="UsernameInput" aria-describedby="emailHelp "
+								 required>
+						</div>
 						<div class="form-group ">
 							<label for="EmailInput ">Email</label>
 							<input type="email " name="email" placeholder="Email" class="form-control " id="emailInput" aria-describedby="emailHelp "
@@ -67,10 +72,10 @@
 							<input type="password" name="confirm" class="form-control " id="confirmPassword" placeholder="Confirm Password " required>
 						</div>
 						<div class="float-right spacing">
-							<button id="login" type="submit" class="btn btn-primary btn-md active ">Log-in</button>
+							<a href="/" class="btn btn-primary btn-md active ">Log-in</a>
 							<!-- this redirects to signup page -->
 							<label for="signupRedirect">OR </label>
-							<a href="#" class="btn btn-primary btn-md active btn-default">Sign-up!</a>
+							<button id="signup" type="submit" class="btn btn-primary btn-md active btn-default">Sign-up!</button>
 						</div>
 					</form>
 				</div>

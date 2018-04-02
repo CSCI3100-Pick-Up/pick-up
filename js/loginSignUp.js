@@ -12,6 +12,7 @@ const Query = require('query-string');
 let app = require('express').Router();
 
 let model = require('./model.js');
+var bcrypt = require('bcryptjs');
 
 module.exports = app;
 
@@ -36,10 +37,38 @@ app.post('/login', urlencodedParser, async (req, res) => {
 });
 
 app.post('/sign', urlencodedParser, async (req, res) => {
-  res.send("Not implement yet");
+	if(req.session.user === undefined){
+		var repeat = -1;
+		await model.User.find({email: req.body.email}).exec(function(err,result){
+			repeat = result.length;
+		});
+		if(repeat === 0){
+			await model.User.create({
+				username: req.body.username,
+				email: req.body.email,
+				password: bcrypt.hashSync(req.body.password)
+			}, function(err, result){
+				if(err)
+					console.log(err);
+				else{
+					console.log(result);
+				}
+			});
+			res.redirect('/profile');
+		}
+		else{
+			res.redirect('/signup');
+		}
+	}
+	else{
+		res.redirect('/schedule');
+	}
 });
 
 app.get('/loggedIn', (req, res)=>{
+	model.User.find({},(err,result)=>{
+		console.log(result);
+	});
   if (req.session.user === undefined) {
     res.send(false);
   }
