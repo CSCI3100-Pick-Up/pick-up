@@ -18,7 +18,12 @@ module.exports = app;
 
 
 app.post('/login', urlencodedParser, async (req, res) => {
-	if (await model.authenticate(req.body.email, req.body.password) === true) {
+	var num = 1;
+	await model.User.find({email: req.body.email},function(err,result){
+		num = result.length;
+
+	});
+	if (num != 0 && await model.authenticate(req.body.email, req.body.password) === true) {
     // req.session.regenerate() is asynchronous but it does not return a promise.
     // In order to use await, the function call is then wrapped in a Promise object
     await new Promise((resolve, reject)=> {
