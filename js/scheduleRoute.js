@@ -25,7 +25,6 @@ app.get('/schedule/getschedule', (req, res)=>{
           model.errHandler(err, res);
         }
         else {
-          console.log(result);
           res.send(result);
         }
       });
@@ -34,7 +33,6 @@ app.get('/schedule/getschedule', (req, res)=>{
 });
 
 app.get('/schedule/newschedule', (req, res)=>{
-  console.log(req.query);
   model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
     if (err) {
       model.errHandler(err, res);
@@ -54,9 +52,35 @@ app.get('/schedule/newschedule', (req, res)=>{
 });
 
 app.get('/schedule/updateschedule', (req, res)=>{
-
+  console.log(req.query);
+  model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
+    if (err) {
+      model.errHandler(err, res);
+    }
+    else {
+      model.Schedule.find({owner: id._id, startDate: req.query.OldstartDate}, (err, schedule)=>{
+        console.log(schedule);
+      })
+    }
+  });
 });
 
 app.get('/schedule/deleteschedule', (req, res)=>{
-
+  var OldstartDate = new Date(req.query.startDate);
+  model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
+    if (err) {
+      model.errHandler(err, res);
+    }
+    else {
+      model.Schedule.find({owner: id._id, content: req.query.content}, (err, schedule)=>{
+        for (i=0; i<schedule.length;i++) {
+          var tempDate = new Date(schedule[i].startDate);
+          if (OldstartDate.getTime() === tempDate.getTime()) {
+            schedule[i].remove();
+            break;
+          }
+        }
+      })
+    }
+  });
 });
