@@ -7,7 +7,6 @@ from time import mktime
 
 concat = chain.from_iterable
 join = str.join
-strptime = datetime.strptime
 fromtimestamp = datetime.fromtimestamp
 
 def delete_key(key, dic):
@@ -34,9 +33,6 @@ db = client['csci3100PickUp']
 scheds = db['schedules']
 users = db['users']
 
-def parse_time(s):
-    return mktime(strptime(s, '%B %d, %Y %H:%M:%S').timetuple())
-
 def email_to_oid(email):
     auth = users.find_one({'email': email})
     return auth['_id']
@@ -46,8 +42,8 @@ def oid_to_name_email(oid):
     return auth['username'], auth['email']
 
 def sched_itv(sched):
-    return open_itv(parse_time(sched['startDate']),
-                    parse_time(sched['endDate']))
+    return open_itv(sched['startDate'],
+                    sched['endDate'])
 
 def normalize_sched(sched):
     oid = sched['owner']
@@ -76,7 +72,7 @@ def normalize_html(html):
 
 def format_time(time):
     fmt = normalize_html('%B %d, %Y %H:%M:%S')
-    return fromtimestamp(time).strftime(fmt)
+    return fromtimestamp(time / 10 ** 3).strftime(fmt)
 
 def format_itv(itv):
     a, b = itv
