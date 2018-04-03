@@ -1,17 +1,30 @@
+Dependencies
+============
+- [Node.js](https://nodejs.org/en/).
+- [MongoDB](https://www.mongodb.com/)
+- [Python 3](https://docs.python.org/3/)(please installed as `python`)
+
 Setup Instruction
 =================
-0. You need to install the necessary modules first by typing `npm install`
-in the folder containing tihs file.
+0. Run `npm install` to install all necessary node modules.
 
-1. You must have started mongodb first before running node.
-
-2. Run `node initdb.js` to reset the data in the DB.
-
-3. Run `node index.js` to start the server.
+1. Run `pip install --user pymongo` or `pip3 install --user pymongo` to install
+   all necessary python libraries.
 
 Alternative Setup Instruction
 =============================
-Suppose you have [Python 3](https://docs.python.org/3/) installed as PYTHON.
-Then after following step 0 and 1, you can simply run:
+Simply run:
 
-    $ PYTHON bootstrap.py
+    $ python setup.py
+
+Instruction to Run
+==================
+0. Run `node initdb.js` to reset the data in the DB.
+
+1. Run `node index.js` to start the node server.
+
+Alternative Instruction to Run
+==============================
+Simply run:
+
+    $ python bootstrap.py
