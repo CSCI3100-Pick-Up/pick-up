@@ -5,14 +5,7 @@ var express = require('express')
   , io = require('socket.io').listen(server);
 server.listen(8080);
 // routing
-app.get('/chatroom', function (req, res) {
-	  res.render('chatroom.ejs');
-});
 
-app.post('/chatroom', function (req,res){
-  console.log(req.body);
-  res.render('chatroom.ejs');
-})
 
 // usernames which are currently connected to the chat
 var usernames = {};
@@ -23,19 +16,19 @@ var rooms = ['room','room2','room3'];
 io.sockets.on('connection', function (socket) {
 
 	// when the client emits 'adduser', this listens and executes
-	socket.on('adduser', function(username){
+	socket.on('adduser', function(username, room){
 		// store the username in the socket session for this client
 		socket.username = username;
 		// store the room name in the socket session for this client
-		socket.room = 'room';
+		socket.room = room;
 		// add the client's username to the global list
 		usernames[username] = username;
 		// send client to room 1
-		socket.join('room');
+		socket.join(room);
 		// echo to client they've connected
-		socket.emit('updatechat', 'SERVER', 'you have connected to room');
+		socket.emit('updatechat', 'SERVER', 'you have connected to room ' + room);
 		// echo to room 1 that a person has connected to their room
-		socket.broadcast.to('room').emit('updatechat', 'SERVER', username + ' has connected to this room');
+		socket.broadcast.to(room).emit('updatechat', 'SERVER', username + ' has connected to this room');
 		socket.emit('updaterooms', rooms, 'room');
 	});
 

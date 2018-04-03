@@ -20,6 +20,8 @@ module.exports = app;
 
 var path = require('path');
 
+//app.all('/admin', require('./admin.js'));
+
 app.get('/loggedIn', require('./loginSignUp.js'));
 
 app.post('/login', require('./loginSignUp.js'));
@@ -33,8 +35,6 @@ app.get('/schedule/newschedule', require('./scheduleRoute.js'));
 app.get('/schedule/updateschedule', require('./scheduleRoute.js'));
 
 app.get('/schedule/deleteschedule', require('./scheduleRoute.js'));
-
-app.all('/admin', require('./admin.js'));
 
 app.get('/', (req, res) => {
 	if (req.session.user){
@@ -85,5 +85,9 @@ app.get('/logout', (req, res) => {
 app.post('/report', require('./report.js'));
 
 app.get('/chatroom', require('./chatroom.js'));
+app.post('/chatroom', urlencodedParser, (req,res)=>{
+	res.locals.emailid = req.body.email;
+	res.render('chatroom.ejs', {title: 'Chatroom'});
+});
 // CSS files, images, client-side JS files should be in ./public
 app.use(express.static('public'));
