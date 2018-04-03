@@ -86,8 +86,13 @@ app.post('/report', require('./report.js'));
 
 app.get('/chatroom', require('./chatroom.js'));
 app.post('/chatroom', urlencodedParser, (req,res)=>{
-	res.locals.emailid = req.body.email;
-	res.render('chatroom.ejs', {title: 'Chatroom'});
+	if(req.session.user === undefined){
+		res.redirect('/');
+	}
+	else{
+		res.locals.emailid = req.body.email;
+		res.render('chatroom.ejs', {title: 'Chatroom'});
+	}
 });
 // CSS files, images, client-side JS files should be in ./public
 app.use(express.static('public'));

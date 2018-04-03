@@ -14,10 +14,10 @@ let model = require('./model.js');
 module.exports = app;
 
 app.get('/chatroom' ,(req, res) => {
-	/*if(req.session.user === undefined){
+	if(req.session.user === undefined){
 		res.render('landingLogin.ejs', { title: 'PickUp' });
 	}
-	else*/{
+	else{
 		//res.locals.user2 = "Your friend's email here";
 		res.locals.emailid = req.session.user;
 		res.render('chatroom.ejs', { title: 'Chatroom'});
