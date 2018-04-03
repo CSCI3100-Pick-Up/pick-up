@@ -17,6 +17,15 @@ app.set('view engine', 'ejs'); // set up ejs for templating
 // Setup the routing rules in ./js/routes
 app.use(require('./js/routes.js'));
 
-var server = app.listen(8081);
+//var server = app.listen(8081);
 
-require('./js/chatserver.js')(server);
+//require('./js/chatserver.js')(server);
+require('./js/chatserver.js');
+
+
+   http = require('http')
+  , server = http.createServer(app)
+  , io = require('socket.io').listen(server);
+
+
+server.listen(8081);

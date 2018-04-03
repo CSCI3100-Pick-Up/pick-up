@@ -18,7 +18,7 @@ app.get('/chatroom', urlencodedParser,(req, res) => {
 		res.render('landingLogin.ejs', { title: 'PickUp' });
 	}
 	else*/{
-		res.locals.user2 = "Your friend's email here";
+		//res.locals.user2 = "Your friend's email here";
 		res.render('chatroom.ejs', { title: 'Chatroom'});
 	}
 });

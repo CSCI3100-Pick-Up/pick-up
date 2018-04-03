@@ -72,7 +72,7 @@ app.post('/sign', urlencodedParser, async (req, res) => {
 
 app.get('/loggedIn', (req, res)=>{
 	model.User.find({},(err,result)=>{
-		console.log(result);
+		//console.log(result);
 	});
   if (req.session.user === undefined) {
     res.send(false);
