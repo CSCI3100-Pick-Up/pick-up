@@ -20,7 +20,7 @@ module.exports = app;
 
 var path = require('path');
 
-//app.all('/admin', require('./admin.js'));
+app.all('/admin', require('./admin.js'));
 
 app.get('/loggedIn', require('./loginSignUp.js'));
 
