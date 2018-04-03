@@ -112,15 +112,18 @@ def format_match(match):
            image='"../icons/whois-icon.png"')
 
 def format_matches(matches):
-    return '<tbody>' + join('', [format_match(match)
-                                 for match in matches]) + '</tbody>'
+    fmt = '<tbody>{matches}</tbody>'
+    return fmt.format(matches=join('', [format_match(match)
+                                        for match in matches]))
 
 def format_field(field):
-    return '<th scope="col">{field}</th>'.format(field=normalize_html(field))
+    fmt = '<th scope="col">{field}</th>'
+    return fmt.format(field=normalize_html(field))
 
 def format_feilds(fields):
-    return '<thead><tr>' + join('', [format_field(field)
-                                     for field in fields]) + '</tr></thead>'
+    fmt = '<thead><tr>{fields}</tr></thead>'
+    return fmt.format(fields=join('', [format_field(field)
+                                       for field in fields]))
 
 def escape_match(match):
     return {'username': escape(match['username']),

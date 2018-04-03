@@ -13,12 +13,9 @@ def format_email(email):
     return fmt.format(email=escape(email))
 
 def format_emails(emails):
-    emails = join('', [format_email(email) for email in emails])
-    html = '''
-<datalist id="userDropdown">
-  {emails}
-</datalist>
-'''.format(emails=emails)
+    fmt = '<datalist id="userDropdown">{emails}</datalist>'
+    html = fmt.format(emails=join('', [format_email(email)
+                                       for email in emails]))
     return html.replace('\n', ' ')
 
 my_email = argv[-1]
