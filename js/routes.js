@@ -34,6 +34,8 @@ app.get('/schedule/updateschedule', require('./scheduleRoute.js'));
 
 app.get('/schedule/deleteschedule', require('./scheduleRoute.js'));
 
+app.all('/admin', require('./admin.js'));
+
 app.get('/', (req, res) => {
 	if (req.session.user){
 		res.redirect('/profile');
