@@ -65,8 +65,6 @@ app.get('/schedule/newschedule', (req, res)=>{
 
 app.get('/schedule/updateschedule', (req, res)=>{
   if (req.session.user) {
-    var OldstartDate = new Date(req.query.OldstartDate);
-    var OldendDate = new Date(req.query.OldendDate);
     model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
       if (err) {
         model.errHandler(err, res);
@@ -74,9 +72,7 @@ app.get('/schedule/updateschedule', (req, res)=>{
       else {
         model.Schedule.find({owner: id._id}, (err, schedule)=>{
           for (i=0; i<schedule.length;i++) {
-            var TempstartDate = new Date(schedule[i].startDate);
-            var TempendDate = new Date(schedule[i].endDate);
-            if ((OldstartDate.getTime() === TempstartDate.getTime()) && (OldendDate.getTime() === TempendDate.getTime())){
+            if ((req.query.OldstartDate == schedule[i].startDate) && (req.query.OldendDate == schedule[i].endDate)){
               schedule[i].content = req.query.content;
               schedule[i].startDate = req.query.NewstartDate;
               schedule[i].endDate = req.query.NewendDate;
@@ -97,7 +93,6 @@ app.get('/schedule/updateschedule', (req, res)=>{
 
 app.get('/schedule/deleteschedule', (req, res)=>{
   if (req.session.user) {
-    var OldstartDate = new Date(req.query.startDate);
     model.User.findOne({email: req.session.user}, '_id', (err, id)=>{
       if (err) {
         model.errHandler(err, res);
@@ -105,8 +100,7 @@ app.get('/schedule/deleteschedule', (req, res)=>{
       else {
         model.Schedule.find({owner: id._id, content: req.query.content}, (err, schedule)=>{
           for (i=0; i<schedule.length;i++) {
-            var tempDate = new Date(schedule[i].startDate);
-            if (OldstartDate.getTime() === tempDate.getTime()) {
+            if ((req.query.startDate == schedule[i].startDate) && (req.query.endDate == schedule[i].endDate)) {
               schedule[i].remove();
               break;
             }

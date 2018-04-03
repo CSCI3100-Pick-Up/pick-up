@@ -15,8 +15,8 @@ var UserSchema = Schema({
 var ScheduleSchema = Schema({
   owner: { type: ObjectId, ref: 'User' },
   content: { type: String, default: '' },
-  endDate: { type: String, default: Date.now.toString() },
-  startDate: { type: String, default: Date.now.toString() }
+  endDate: { type: Number, default: Date.now() },
+  startDate: { type: Number, default: Date.now() }
 });
 
 var BlacklistSchema = Schema({
