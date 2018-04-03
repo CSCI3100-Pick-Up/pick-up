@@ -58,18 +58,18 @@ function populateData() {
 
   // 11 users
   var users = [
-    _user('john', 'john@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('jane', 'jane@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('eric', 'eric@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('matt', 'matt@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('jill', 'jill@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('bill', 'bill@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('bob', 'bob@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('charles', 'charles@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('susan', 'susan@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('tanya', 'tanya@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('fred', 'fred@cuhk.edu.hk', '123', '/img/default.jpg'),
-    _user('admin', 'admin', '123', '/img/default.jpg')
+    _user('john', 'john@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('jane', 'jane@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('eric', 'eric@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('matt', 'matt@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('jill', 'jill@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('bill', 'bill@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('bob', 'bob@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('charles', 'charles@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('susan', 'susan@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('tanya', 'tanya@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('fred', 'fred@cuhk.edu.hk', '123', '/img/default.png'),
+    _user('admin', 'admin', '123', '/img/default.png')
   ];
   for (var i=0;i<users.length;i++) {
     var hash = bcrypt.hashSync(users[i].password, 10);
