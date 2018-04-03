@@ -16,10 +16,10 @@ let model = require('./model.js');
 module.exports = app;
 
 app.all('/admin', async (req, res)=>{
-  //if (!(req.session.user === 'admin')) {
-    //res.redirect('/');
-    //return;
-  //}
+  if (!(req.session.user === 'admin')) {
+    res.redirect('/');
+    return;
+  }
   try {
     let Data = await model.Blacklist.find({}).exec();
     // Step 5: Render the view

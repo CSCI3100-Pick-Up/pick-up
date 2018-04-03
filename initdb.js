@@ -68,7 +68,8 @@ function populateData() {
     _user('charles', 'charles@cuhk.edu.hk', '123'),
     _user('susan', 'susan@cuhk.edu.hk', '123'),
     _user('tanya', 'tanya@cuhk.edu.hk', '123'),
-    _user('fred', 'fred@cuhk.edu.hk', '123')
+    _user('fred', 'fred@cuhk.edu.hk', '123'),
+    _user('admin', 'admin', '123')
   ];
   for (var i=0;i<users.length;i++) {
     var hash = bcrypt.hashSync(users[i].password, 10);
