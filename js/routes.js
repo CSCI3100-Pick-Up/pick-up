@@ -86,5 +86,8 @@ app.post('/chatroom', urlencodedParser, (req,res)=>{
 		res.render('chatroom.ejs', {title: 'Chatroom'});
 	}
 });
+
+
+app.post('/upload', require('./upload.js'));
 // CSS files, images, client-side JS files should be in ./public
 app.use(express.static('public'));

@@ -16,7 +16,9 @@
                 <div class="well well-sm">
                     <div class="row">
                         <div class="media">
-                            <img class="img-thumbnail" src="/thumbnail-images/Profile-avatar-placeholder-large.png" style="height:75%; width: 35%;"
+                            <img class="img-thumbnail" src="<%= imgfile %>
+                            <%# /thumbnail-images/Profile-avatar-placeholder-large.png %>
+                            " style="height:300px; width: 200px;"
                                 alt="Generic placeholder image" />
                             <div class="media-body">
 
@@ -46,17 +48,16 @@
                                     <a href='/schedule' class="btn btn-primary" style="padding-left:50px;">
                                         View Interests and Edit Schedule
                                     </a>
-
-
-
                                 </div>
+
+                                  <form class="btn btn-primary" action="/upload" method="post" enctype="multipart/form-data">
+                                    <input type="file" name="myfile" >
+                                    <input type="submit" value="Upload" >
+                                  </form>
+
+
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary">
-                          <input type="file" id="fileinput" accept="image/*" />
-
-
-                        </button>
                     </div>
                 </div>
             </div>

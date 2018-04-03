@@ -28,6 +28,7 @@ app.get('/profile', async (req, res) => {
 				userid = result._id;
 				res.locals.name = result.username;
 				res.locals.email = result.email;
+				res.locals.imgfile = result.image;
 			}
 		});
 
