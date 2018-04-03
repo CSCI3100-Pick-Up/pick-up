@@ -1,27 +1,90 @@
 <%- include header.ejs %>
 
-<%
-  locals.user2 = locals.user2 || "";
-%>
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>
+  $.ajax({
+    url: '/loggedIn',
+    type: 'GET',
+    success: function(result) {
+      if (result) {
+        window.urname = result.username;
+        let logout_html = "<a class=nav-link href=/logout>Logout</a>"
+        //$('#loginbutton').html(logout_html);
+        if (result.user === "admin") {
+          let welcome_html = "Welcome, <a href='/admin'>"+result.user+"</a>!"
+          //$('#welcomeUser').html(welcome_html);
+        }
+        else {
+          let welcome_html = "Welcome, <a href='/profile'>"+result.user+"</a>!"
+          //$('#welcomeUser').html(welcome_html);
+        }
+      }
+      else {
+        var login_html = "<a class=nav-link href=/login>Login</a>"
+        //$('#loginbutton').html(login_html);
+        //$('#welcomeUser').html(" ");
+      }
+    }
+  })
+	var socket = io.connect('http://localhost:8080');
+	// on connection to server, ask for user's name with an anonymous callback
+	socket.on('connect', function(){
+		// call the server-side function 'adduser' and send one parameter (value of prompt)
+    console.log(window.urname);
+		socket.emit('adduser', window.urname);
+	});
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	// listener, whenever the server emits 'updatechat', this updates the chat body
+	socket.on('updatechat', function (username, data) {
+		$('#conversation').append('<b>'+username + ':</b> ' + data + '<br>');
+	});
 
-<body>
+	// listener, whenever the server emits 'updaterooms', this updates the room the client is in
+	socket.on('updaterooms', function(rooms, current_room) {
+		$('#rooms').empty();
+		$.each(rooms, function(key, value) {
+			if(value == current_room){
+				$('#rooms').append('<div>' + value + '</div>');
+			}
+			else {
+				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+			}
+		});
+	});
 
-	<div style="margin: 3% 10% 0 10%">
-		<p id="chatuser"><%= user2 %></p>
-		<ul id="chatHistory" class="list-group" style="overflow:hidden; overflow-y:scroll;>
-			<li class="list-group-item list-group-item-info">First</li>
-			<li class="list-group-item list-group-item-success" style="text-align: right">Second</li>
-		</ul>
+	function switchRoom(room){
+		socket.emit('switchRoom', room);
+	}
 
-		<div style="width:100%; position: relative">
-			<textarea id="sendText" type="text" style="width:90%;" rows = "3"></textarea>
-			<input id="send" style="position: absolute; top:0px;width:10%;" class="btn" type="submit" value="Send">
-		</div>
-	</div>
-	<script src="/clientjs/chat.js">
+	// on load of page
+	$(function(){
+		// when the client clicks SEND
+		$('#datasend').click( function() {
+			var message = $('#data').val();
+			$('#data').val('');
+			// tell server to execute 'sendchat' and send along one parameter
+			socket.emit('sendchat', message);
+		});
+
+		// when the client hits ENTER on their keyboard
+		$('#data').keypress(function(e) {
+			if(e.which == 13) {
+				$(this).blur();
+				$('#datasend').focus().click();
+			}
+		});
+	});
+
+</script>
+<div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+	<b>ROOMS</b>
+	<div id="rooms"></div>
+</div>
+<div style="float:left;width:300px;height:250px;overflow:scroll-y;padding:10px;">
+	<div id="conversation"></div>
+	<input id="data" style="width:200px;" />
+	<input type="button" id="datasend" value="send" />
+</div>
 
 <%- include footer.ejs %>
