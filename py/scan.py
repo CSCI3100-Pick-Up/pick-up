@@ -1,5 +1,5 @@
 from datetime import datetime
-from html import esacpe
+from html import escape
 from itertools import chain, groupby
 from pymongo import MongoClient
 from sys import argv
