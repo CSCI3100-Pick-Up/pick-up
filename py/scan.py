@@ -12,6 +12,12 @@ fromtimestamp = datetime.fromtimestamp
 def delete_key(key, dic):
     return {k: dic[k] for k in dic if k != key}
 
+def safe_escape(x):
+    try:
+        return escape(x)
+    except:
+        return x
+
 def open_itv(a, b):
     if a < b:
         return (a, b)
@@ -37,20 +43,23 @@ def email_to_oid(email):
     auth = users.find_one({'email': email})
     return auth['_id']
 
-def oid_to_name_email(oid):
+def oid_to_name_email_image(oid):
     auth = users.find_one({'_id': oid})
-    return auth['username'], auth['email']
+    return auth['username'], auth['email'], auth['image']
 
 def sched_itv(sched):
-    return open_itv(sched['startDate'],
-                    sched['endDate'])
+    return open_itv(sched['startDate'], sched['endDate'])
 
 def normalize_sched(sched):
     oid = sched['owner']
-    name, email = oid_to_name_email(oid)
+    name, email, image = oid_to_name_email_image(oid)
     act = sched['content']
     itv = sched_itv(sched)
-    return {'username': name, 'email': email, 'activity': act, 'interval': itv}
+    return {'username': name,
+            'image': image,
+            'email': email,
+            'activity': act,
+            'interval': itv}
 
 def normalize_scheds(scheds):
     return [normalize_sched(sched) for sched in scheds]
@@ -85,7 +94,7 @@ def format_match(match):
 <tr>
   <th>
     <img class="img-fluid"
-         src={image}
+         src="{image}"
          style="max-width: 50%;">
   </th>
   <td>{activity}</td>
@@ -105,7 +114,7 @@ def format_match(match):
            username=match['username'],
            interval=format_itv(match['interval']),
            email=match['email'],
-           image='"../icons/whois-icon.png"')
+           image=match['image'])
 
 def format_matches(matches):
     fmt = '<tbody>{matches}</tbody>'
@@ -122,10 +131,7 @@ def format_feilds(fields):
                                        for field in fields]))
 
 def escape_match(match):
-    return {'username': escape(match['username']),
-            'email': escape(match['email']),
-            'activity': escape(match['activity']),
-            'interval': match['interval']}
+    return {k: safe_escape(match[k]) for k in match}
 
 def escape_matches(matches):
     return [escape_match(match) for match in matches]
