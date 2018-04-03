@@ -20,10 +20,10 @@ def open_itv(a, b):
 
 def intersect(j1, j2):
     if not j1 or not j2:
-        return None
+        return {}
     else:
-        a1, b1 = j1
-        a2, b2 = j2
+        (a1, b1) = j1
+        (a2, b2) = j2
         a = max(a1, a2)
         b = min(b1, b2)
         return open_itv(a, b)
@@ -37,7 +37,8 @@ def parse_time(s):
     return mktime(strptime(s, '%B %d, %Y %H:%M:%S').timetuple())
 
 def email_to_oid(email):
-    return users.find_one({'email': email})['_id']
+    auth = users.find_one({'email': email})
+    return auth['_id']
 
 def oid_to_name_email(oid):
     auth = users.find_one({'_id': oid})
@@ -139,7 +140,7 @@ my_sched_ls = normalize_scheds(scheds.find({'owner': email_to_oid(my_email)}))
 my_sched_dict = scheds_to_dict(my_sched_ls)
 
 other_sched_ls = normalize_scheds(concat(scheds.find({'content': act})
-                                   for act in my_sched_dict))
+                                         for act in my_sched_dict))
 other_sched_dict = scheds_to_dict(other_sched_ls)
 
 overlaps = concat(intersect_scheds(other_sched_dict[act],
