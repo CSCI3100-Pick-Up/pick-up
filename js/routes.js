@@ -62,7 +62,7 @@ app.get('/schedule', (req, res) => {
 			res.render('schedule.ejs', { title: 'PickUp - Schedule' });
 	}
 	else {
-		model.errHandler("User Not found!", res);
+		res.redirect('/');
 	}
 });
 
@@ -71,7 +71,7 @@ app.get('/report', (req, res) => {
 			res.render('report.ejs', { title: 'PickUp - Report' });
 	}
 	else {
-		model.errHandler("User Not found!", res);
+		res.redirect('/');
 	}
 });
 
