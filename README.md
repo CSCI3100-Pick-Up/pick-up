@@ -2,7 +2,7 @@ Dependencies
 ============
 - [Node.js](https://nodejs.org/en/).
 - [MongoDB](https://www.mongodb.com/)
-- [Python 3](https://docs.python.org/3/)(please installed as `python`)
+- [Python 3](https://docs.python.org/3/) (please installed as `python`)
 
 Setup Instruction
 =================
