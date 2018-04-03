@@ -36,8 +36,12 @@ app.post('/login', urlencodedParser, async (req, res) => {
   }
   else {
     req.session.destroy(()=>{});  // Safe asyncrhous call
-    res.redirect('/');
-		console.log('login fail');
+		res.render('landingLogin.ejs',
+      { title: 'PickUp',
+        loginMsg: 'Incorrect email or password! Please try again.',
+        email: req.body.email
+      }
+    );
   }
 });
 
@@ -48,21 +52,38 @@ app.post('/sign', urlencodedParser, async (req, res) => {
 			repeat = result.length;
 		});
 		if(repeat === 0){
-			await model.User.create({
-				username: req.body.username,
-				email: req.body.email,
-				password: bcrypt.hashSync(req.body.password)
-			}, function(err, result){
-				if(err)
-					console.log(err);
-				else{
-					console.log(result);
-				}
-			});
-			res.redirect('/profile');
+			if (req.body.email.includes("@cuhk.edu.hk")) {
+				await model.User.create({
+					username: req.body.username,
+					email: req.body.email,
+					password: bcrypt.hashSync(req.body.password)
+				}, function(err, result){
+					if(err)
+						console.log(err);
+					else{
+						console.log(result);
+					}
+				});
+				res.redirect('/profile');
+			}
+			else {
+				req.session.destroy(()=>{});  // Safe asyncrhous call
+				res.render('signUp.ejs',
+		      { title: 'PickUp - Sign Up',
+		        signupMsg: 'You should use the school email! Please try again.',
+		        email: req.body.email
+		      }
+		    );
+			}
 		}
 		else{
-			res.redirect('/signup');
+			req.session.destroy(()=>{});  // Safe asyncrhous call
+			res.render('signUp.ejs',
+				{ title: 'PickUp - Sign Up',
+					signupMsg: 'The user already exists! Please try login.',
+					email: req.body.email
+				}
+			);
 		}
 	}
 	else{

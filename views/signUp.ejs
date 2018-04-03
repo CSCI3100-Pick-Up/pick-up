@@ -8,6 +8,12 @@
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
 </head>
+
+<%
+  // Set default values
+  locals.email = locals.email || "";
+  locals.signupMsg = locals.signupMsg || "";
+%>
 <body>
 	<link rel="stylesheet" href="/css/landingLogin.css">
 	<div class="container">
@@ -85,6 +91,10 @@
 							<label for="signupRedirect">OR </label>
 							<button id="signup" type="submit" class="btn btn-primary btn-md active btn-default">Sign-up!</button>
 						</div>
+						<hr>
+						<% if (signupMsg) { %>
+							<span style="color:red"><%= signupMsg %></span>
+						<% } %>
 					</form>
 				</div>
 			</div>
