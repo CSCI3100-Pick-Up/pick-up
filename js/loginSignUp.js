@@ -30,9 +30,14 @@ app.post('/login', urlencodedParser, async (req, res) => {
       req.session.regenerate(resolve);      // Recreate the session
     });
     req.session.user = req.body.email;  // To represent successful login
-    res.redirect('/schedule');
-		console.log('successful login');
-
+		if (req.body.email == 'admin') {
+			res.redirect('/admin');
+			console.log('Welcome Admin');
+		}
+		else {
+			res.redirect('/schedule');
+			console.log('successful login');
+		}
   }
   else {
     req.session.destroy(()=>{});  // Safe asyncrhous call

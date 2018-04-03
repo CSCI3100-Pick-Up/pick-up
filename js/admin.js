@@ -21,9 +21,10 @@ app.all('/admin', async (req, res)=>{
     return;
   }
   try {
-    let Data = await model.Blacklist.find({}).exec();
+    let ReportData = await model.Blacklist.find({}).exec();
+    let UserData = await model.User.find({}).exec();
     // Step 5: Render the view
-    res.render('admin.ejs', { title: 'Admin page', ReportData: Data});
+    res.render('admin.ejs', { title: 'Admin page', ReportData: ReportData, UserData: UserData});
   } catch (err) {
     model.errHandler(err, res);
 }
