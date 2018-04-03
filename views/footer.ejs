@@ -9,6 +9,7 @@ $(document).ready(function(){
     type: 'GET',
     success: function(result) {
       if (result) {
+        window.urname = result.username;
         let logout_html = "<a class=nav-link href='/logout'>Logout</a>"
         $('#loginbutton').html(logout_html);
         if (result.user === "admin") {
