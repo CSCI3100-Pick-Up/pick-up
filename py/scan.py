@@ -1,4 +1,5 @@
 from datetime import datetime
+from html import escape
 from itertools import chain, groupby
 from pymongo import MongoClient
 from sys import argv
@@ -121,6 +122,15 @@ def format_feilds(fields):
     return '<thead><tr>' + join('', [format_field(field)
                                      for field in fields]) + '</tr></thead>'
 
+def escape_match(match):
+    return {'username': escape(match['username']),
+            'email': escape(match['email']),
+            'activity': escape(match['activity']),
+            'interval': match['interval']}
+
+def escape_matches(matches):
+    return [escape_match(match) for match in matches]
+
 def format_html(matches):
     fields = ['', 'Activity', 'Name', 'Matching time slot']
     text = '' if matches else 'No matches found.'
@@ -131,7 +141,7 @@ def format_html(matches):
 </table>
 {text}
 '''.format(fields=format_feilds(fields),
-           matches=format_matches(matches),
+           matches=format_matches(escape_matches(matches)),
            text=normalize_html(text))
     return html.replace('\n', ' ')
 
