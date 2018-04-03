@@ -1,5 +1,4 @@
 from datetime import datetime
-from html import esacpe
 from itertools import chain, groupby
 from pymongo import MongoClient
 from sys import argv
@@ -72,17 +71,17 @@ def intersect_scheds(scheds, itvs):
             for itv in itvs)
 
 def normalize_html(html):
-    return escape(html.replace(' ', '&nbsp;').replace('\n', '<br>'))
+    return html.replace(' ', '&nbsp;').replace('\n', '<br>')
 
 def format_time(time):
-    fmt = '%B %d, %Y %H:%M:%S'
-    return normalize_html(fromtimestamp(time).strftime(fmt))
+    fmt = normalize_html('%B %d, %Y %H:%M:%S')
+    return fromtimestamp(time).strftime(fmt)
 
 def format_itv(itv):
     a, b = itv
     fmt = '''from  {start}
 until  {end}'''
-    return normalize_html(fmt.format(start=format_time(a), end=format_time(b)))
+    return normalize_html(fmt).format(start=format_time(a), end=format_time(b))
 
 def format_match(match):
     return '''
