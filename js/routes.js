@@ -75,6 +75,11 @@ app.get('/report', (req, res) => {
 	}
 });
 
+app.get('/logout', (req, res) => {
+  req.session.destroy(()=>{});   // Safe asyncrhonus call
+  res.redirect('/');
+});
+
 app.post('/report', require('./report.js'));
 
 app.get('/chatroom', require('./chatroom.js'));
