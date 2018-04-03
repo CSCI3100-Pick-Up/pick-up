@@ -68,20 +68,12 @@ app.get('/schedule', (req, res) => {
 	}
 });
 
-app.get('/report', (req, res) => {
-	if (req.session.user){
-			res.render('report.ejs', { title: 'PickUp - Report' });
-	}
-	else {
-		res.redirect('/');
-	}
-});
-
 app.get('/logout', (req, res) => {
   req.session.destroy(()=>{});   // Safe asyncrhonus call
   res.redirect('/');
 });
 
+app.get('/report', require('./get-report.js'));
 app.post('/report', require('./report.js'));
 
 app.get('/chatroom', require('./chatroom.js'));
