@@ -1,3 +1,14 @@
+/*
+PROGRAM PROFILE - Program to manipulate user's profile
+PROGRAMMER: Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: HTTP://LOCALHOST:8081/PROFILE
+VERSION 1: written 3-4-2018
+PURPOSE: users can look at their profiles and change their images
+DATA STRUCTURE: Variable userid - STRING
+  ARRAY interests - STRING array of users' interests
+ALGORITHM: get the user's interests, and push them into the array 'interests'
+*/
+
 let express = require('express');
 let bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({extended:false});

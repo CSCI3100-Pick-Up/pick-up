@@ -1,3 +1,16 @@
+<%#
+PROGRAM REPORT - Program to provide an interface of report page and send report request
+PROGRAMMER: Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: HTTP://LOCALHOST:8081/REPORT
+VERSION 1: written 3-4-2018
+PURPOSE: provide an interface for user to report another user.
+DATA STRUCTURE: Variable bluser - STRING
+  Variable cb1 - BOOLEAN
+  Variable cb2 - BOOLEAN
+  Variable description - STRING
+ALGORITHM: send post request '/report' to server with variables 'bluser', 'cb1', 'cb2' and 'description'
+%>
+
 <%- include header.ejs %>
 
 <body>

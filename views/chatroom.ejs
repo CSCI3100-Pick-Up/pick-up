@@ -1,4 +1,13 @@
-<%# Source: https://github.com/mmukhin/psitsmike_example_2 %>
+<%#
+PROGRAM CHATROOM - Program to provide an interface of chatroom and send message
+PROGRAMMER: Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: HTTP://LOCALHOST:8081/CHATROOM
+VERSION 1: mmukhin, https://github.com/mmukhin/psitsmike_example_2
+REVISION 1.1: 3-4-2018 to change the file from html to ejs file and use our header and footer. Remove switchRoom in left-hand side of the interface.
+PURPOSE: provide an interface to user to chat with another user.
+DATA STRUCTURE: Variable message - STRING
+ALGORITHM: Open websocket, connect to server. When user click send button, get the text in editbox and store it in variable 'message'. Then send 'message' through the websocket and update the chatroom
+%>
 
 <%- include header.ejs %>
 

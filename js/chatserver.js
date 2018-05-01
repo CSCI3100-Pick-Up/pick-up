@@ -1,3 +1,15 @@
+/*
+PROGRAM CHATSERVER - Program to run a server for chatrooms
+PROGRAMMER: Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: HTTP://LOCALHOST:8081
+VERSION 1: mmukhin, https://github.com/mmukhin/psitsmike_example_2
+REVISION 1.1: 3-4-2018 to remove switchRoom, change the name of the chatroom to be the email of a user.
+PURPOSE: run a server for users who are confirmed to chat.
+DATA STRUCTURE: Variable EMAIL - STRING
+  ARRAY usernames - STRING array of users' email
+ALGORITHM: If a user connect to the chatroom, and variable 'EMAIL' to the array 'usernames'. If the user disconnects, remove 'EMAIL' from array 'usernames'
+*/
+
 var express = require('express')
   , app = express()
   , http = require('http')
@@ -38,6 +50,7 @@ io.sockets.on('connection', function (socket) {
 		io.sockets.in(socket.room).emit('updatechat', socket.username, data);
 	});
 
+  // This is not used in this program
 	socket.on('switchRoom', function(newroom){
 		socket.leave(socket.room);
 		socket.join(newroom);

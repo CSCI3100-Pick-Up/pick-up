@@ -1,3 +1,14 @@
+/*
+PROGRAM UPLOAD - Program to upload an image
+PROGRAMMER: Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: POST UPLOAD(IMAGE)
+VERSION 1: written 3-4-2018
+PURPOSE: users can upload an image set this image to be the image in profile
+DATA STRUCTURE: Variable result - OBJECT
+  Variable IMAGE - FILE
+ALGORITHM: receive 'IMAGE' file from user, rename it as user's id in variable 'result', update the path of the image file to database
+*/
+
 let express = require('express');
 let bodyParser = require('body-parser');
 
