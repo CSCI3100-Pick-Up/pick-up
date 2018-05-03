@@ -28,3 +28,7 @@ Alternative Instruction to Run
 Simply run:
 
     $ python bootstrap.py
+
+Copyright
+=========
+See license header of each individual file.
