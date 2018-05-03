@@ -18,8 +18,14 @@ const app = require('express').Router()
 const py = require('python-shell')
 module.exports = app
 
+/* Title of the page.  */
 const title = 'PickUp - Report'
 
+/* After receiving a GET request, redirect to the homepage if the user has not
+   login. Otherwise, run `py/users.py` with the email of the login user to
+   obtain a html drop down list consisting of all user emails in the database
+   except the login user. Finally, render the page with that drop down
+   list.  */
 app.get('/report',
 
         (req, res) =>

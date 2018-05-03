@@ -18,7 +18,14 @@ const app = require('express').Router()
 const py = require('python-shell')
 module.exports = app
 
+/* Title of the page.  */
 const title = 'PickUp - Scan Result'
+
+/* After receiving a GET request, redirect to the homepage if the user has not
+   login. Otherwise, run `py/scan.py` with the email of the login user to
+   obtain a html table consisting of overlapping time intervals of that user
+   with other users for each activity. Finally, render the page with that
+   table.  */
 app.get('/matches',
 
         (req, res) =>
