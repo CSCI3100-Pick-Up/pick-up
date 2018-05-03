@@ -14,11 +14,18 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+'''
+Initialize database and bootstrap node server.
+'''
+
 from shutil import which
 from subprocess import call
 
 def node(*args):
+    'Run node command with arguments `args`.'
     return call([which('node')] + list(args))
 
-node('initdb.js')
-node('index.js')
+# Entry point.
+if __name__ == '__main__':
+    node('initdb.js')
+    node('index.js')

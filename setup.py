@@ -14,14 +14,22 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+'''
+Install all node and python depedencies.
+'''
+
 from shutil import which
 from subprocess import call
 
 def npm_install(*args):
+    'Run npm command with arguments `args`.'
     return call([which('npm'), "install"] + list(args))
 
 def pip_install(*args):
+    'Run pip command with arguments `args`.'
     return call([which('pip'), "install", "--user"] + list(args))
 
-npm_install()
-pip_install("pymongo")
+# Entry point.
+if __name__ == '__main__':
+    npm_install()
+    pip_install("pymongo")

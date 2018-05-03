@@ -14,30 +14,40 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+'''
+Format all user emails in the database as a html drop down list except the
+one given in `argv[-1]`.
+'''
+
 from html import escape
 from pymongo import MongoClient
 from sys import argv
 
+# Aliases for functions.
 join = str.join
 
-client = MongoClient()
-db = client['csci3100PickUp']
-users = db['users']
-
 def format_email(email):
+    'Format user email `email` as an item of a html drop down list.'
     fmt = '<option value="{email}">{email}</option>'
     return fmt.format(email=escape(email))
 
 def format_emails(emails):
+    'Format a list of user emails `emails` as a html drop down list.'
     fmt = '<datalist id="userDropdown">{emails}</datalist>'
     html = fmt.format(emails=join('', [format_email(email)
                                        for email in emails]))
     return html.replace('\n', ' ')
 
-my_email = argv[-1]
-auths = users.find()
-other_emails = [auth['email']
-                for auth in auths
-                if auth['email'] not in {my_email, 'admin'}]
+# Entry point.
+if __name__ == '__main__':
+    client = MongoClient()
+    db = client['csci3100PickUp']
+    users = db['users']
 
-print(format_emails(sorted(other_emails)))
+    my_email = argv[-1]
+    auths = users.find()
+    other_emails = [auth['email']
+                    for auth in auths
+                    if auth['email'] not in {my_email, 'admin'}]
+
+    print(format_emails(sorted(other_emails)))
