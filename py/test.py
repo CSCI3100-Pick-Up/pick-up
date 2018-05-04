@@ -391,15 +391,16 @@ def test_profile():
 
 
 def test_matches():
-    def test1():
-        add_events('john@cuhk.edu.hk', '123', ['event'])
-        add_events('jane@cuhk.edu.hk', '123', ['event'])
-        with matches('john@cuhk.edu.hk', '123') as b:
-            last_row = b.find_by_tag('tr')[-3].find_by_tag('td')
-            assert(last_row[0] == 'event')
-            assert(last_row[1] == 'jane')
-            last_row[2].click()
-            assert(is_chatroom_page(b))
+    add_events('john@cuhk.edu.hk', '123', ['event'])
+    add_events('jane@cuhk.edu.hk', '123', ['event'])
+
+    with matches('john@cuhk.edu.hk', '123') as b:
+        last_row = b.find_by_tag('tr')[-3].find_by_tag('td')
+        assert(last_row[0].text == 'event')
+        assert(last_row[1].text == 'jane')
+        #assert(is_chatroom_page(b))
+
+    initdb()
 
 
 initdb()
