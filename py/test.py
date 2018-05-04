@@ -245,12 +245,6 @@ def test_redirections():
     with visit('http://localhost:8081/loggedIn') as b:
         assert(body(b) == 'false')
 
-    with visit('http://localhost:8081/login') as b:
-        assert(body(b) == 'Cannot GET /login')
-
-    with visit('http://localhost:8081/sign') as b:
-        assert(body(b) == 'Cannot GET /sign')
-
     with visit('http://localhost:8081/schedule') as b:
         assert(is_home_page(b))
 
@@ -283,9 +277,6 @@ def test_redirections():
 
     with visit('http://localhost:8081/chatroom') as b:
         assert(is_home_page(b))
-
-    with visit('http://localhost:8081/upload') as b:
-        assert(body(b) == 'Cannot GET /upload')
 
     with visit('http://localhost:8081/' + 'does-not-exist') as b:
         assert(body(b) == 'Cannot GET /' + 'does-not-exist')
