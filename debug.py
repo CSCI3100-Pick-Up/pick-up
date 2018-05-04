@@ -8,5 +8,5 @@ b = Browser('phantomjs', executable_path=join('node_modules',
                                               'bin',
                                               'phantomjs'))
 b.driver.set_window_size(1920, 1080)
-b.visit('http://www.example.org/')
+b.visit('http://localhost:8081/')
 print(b.html)
