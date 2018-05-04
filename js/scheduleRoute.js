@@ -3,7 +3,7 @@
 /*
 PROGRAM SCHEDULE - Program to handle request concerning schedule for users
 PROGRAMMER: Wong Muk Kit 1155063275@link.cuhk.edu.hk
-CALLING SEQUENCE: HTTP://LOCALHOST:8081/schedule/
+CALLING SEQUENCE: HTTP://LOCALHOST:8081/schedule/getschedule, HTTP://LOCALHOST:8081/schedule/newschedule, HTTP://LOCALHOST:8081/schedule/updateschedule, HTTP://LOCALHOST:8081/schedule/deleteschedule
 VERSON 1: written 3-4-2018
 PURPOSE: users can retrieve, add, edit and delete events from their own schedule
 DATA STRUCTURE:
