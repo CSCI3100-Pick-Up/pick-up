@@ -33,7 +33,7 @@ How to Run Test
 ===============
 Simply run:
 
-    # python py/test.py
+    $ python py/test.py
 
 Copyright
 =========
