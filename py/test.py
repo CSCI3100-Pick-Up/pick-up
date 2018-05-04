@@ -43,6 +43,8 @@ def initdb():
 
 def make_browser(phantom_path=join('node_modules',
                                    'phantomjs-prebuilt',
+                                   'lib',
+                                   'phantom',
                                    'bin',
                                    'phantomjs'),
                  width=1920,
