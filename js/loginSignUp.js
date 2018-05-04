@@ -1,4 +1,23 @@
 // This file contains the login/signup rules for the app
+/*
+PROGRAM LOGINSIGNUP - Program to handle login and signup requests
+PROGRAMMER: Wong Muk Kit 1155063275@link.cuhk.edu.hk, Leung Wing Keung 1155062425@link.cuhk.edu.hk
+CALLING SEQUENCE: HTTP://LOCALHOST:8081/login, HTTP://LOCALHOST:8081/sign, HTTP://LOCALHOST:8081/loggedIn
+VERSON 1: written 3-4-2018
+PURPOSE: users can login and signup to the system.
+DATA STRUCTURE:
+  Variable req.session.user - STRING
+  Variable num - INTEGER
+  Variable result.length - INTEGER
+  Variable req.body.email - STRING
+  Variable req.body.password - STRING
+  Variable repeat - INTEGER
+  Variable req.body.username - STRING
+ALGORITHM: For login, it will first find the user from the database using the inputted email. If the email and password (after hashing) is correct, then direct the admin to admin page and other user to schedule page.
+For sign, it will check whether the provided email already existed in the database and is using the school email. If these are ok, then it will save the user information including hashed password to the database and direct the user to the profile page.
+For loggedIn, it will check whether there is a valid session. If it is, then the user has logged in and will return true.
+*/
+
 
 let express = require('express');
 let bodyParser = require('body-parser');
@@ -97,9 +116,6 @@ app.post('/sign', urlencodedParser, async (req, res) => {
 });
 
 app.get('/loggedIn', (req, res)=>{
-	model.User.find({},(err,result)=>{
-		//console.log(result);
-	});
   if (req.session.user === undefined) {
     res.send(false);
   }
