@@ -29,6 +29,12 @@ Simply run:
 
     $ python bootstrap.py
 
+How to Run Test
+===============
+Simply run:
+
+    # python py/test.py
+
 Copyright
 =========
 See license header of each individual file.
