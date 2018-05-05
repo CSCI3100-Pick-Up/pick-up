@@ -31,14 +31,8 @@ from splinter import Browser
 from subprocess import call
 
 
-client = MongoClient()
-db = client['csci3100PickUp']
-scheds = db['schedules']
-users = db['users']
-
-
 def initdb():
-    return call([which('node'), "initdb.js"])
+    return call([which('node'), 'initdb.js'])
 
 
 def make_browser(phantom_path=join('node_modules',
@@ -396,12 +390,19 @@ def test_matches():
     initdb()
 
 
-initdb()
-test_redirections()
-test_login()
-test_logout()
-test_signup()
-test_nav_bar()
-test_schedule()
-test_profile()
-test_matches()
+# Entry point.
+if __name__ == '__main__':
+    client = MongoClient()
+    db = client['csci3100PickUp']
+    scheds = db['schedules']
+    users = db['users']
+
+    initdb()
+    test_redirections()
+    test_login()
+    test_logout()
+    test_signup()
+    test_nav_bar()
+    test_schedule()
+    test_profile()
+    test_matches()
