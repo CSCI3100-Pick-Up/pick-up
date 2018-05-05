@@ -23,13 +23,13 @@ from subprocess import call
 
 def npm_install(*args):
     'Run npm command with arguments `args`.'
-    return call([which('npm'), "install"] + list(args))
+    return call([which('npm'), 'install'] + list(args))
 
 def pip_install(*args):
     'Run pip command with arguments `args`.'
-    return call([which('pip'), "install", "--user"] + list(args))
+    return call([which('pip'), 'install', '--user'] + list(args))
 
 # Entry point.
 if __name__ == '__main__':
     npm_install()
-    pip_install("pymongo")
+    pip_install('pymongo', 'splinter')

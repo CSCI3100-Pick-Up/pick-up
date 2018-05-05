@@ -8,8 +8,9 @@ Setup Instruction
 =================
 0. Run `npm install` to install all necessary node modules.
 
-1. Run `pip install --user pymongo` or `pip3 install --user pymongo` to install
-   all necessary python libraries.
+1. Run `pip install --user pymongo splinter`
+   or `pip3 install --user pymongo splinter`
+   to install all necessary python libraries.
 
 Alternative Setup Instruction
 =============================
